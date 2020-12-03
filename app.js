@@ -89,91 +89,45 @@
             }
         ]
     
-        const dino = new Dino(data.species,data.weight,data.diet,data.height,data.where,data.when,data.fact);
     
-        const m = data.map( function(data) {
-        return new Dino(data.species,data.weight,data.diet,data.height,data.where,data.when,data.fact);
-    });
+        const dino = data.map((data) => new Dino(data.species, data.weight, data.diet, data.height, data.where, data.when, data.fact));
 
 
 
    // Create Human Object
-       
+   const gethumandata =  function (){
+    const name = document.getElementById("name").value;
+    const feet = parseInt(document.getElementById("feet").value);
+    const inches = parseInt(document.getElementById("inches").value);
+    const height = feet*12+inches;
+    const weight = document.getElementById("weight").value;
+    const diet = document.getElementById("diet").value;
+    return new Dino (name,weight,diet, height,"","","")
+};
 
-        let human = new Object();
-        
-        console.log(human);
-        
-       const l=function(human){
-            // Use IIFE to get and return human data from form
-                let name = 'man';
-                let feet = 23;
-                let inches = 34;
-                let height = 45;
-                let weight = 77;
-                let diet = 80;
-                return new Dino (human.name, human.height, human.weight, human.diet);
-                };
-            
-                console.log(l);
-        
+    let human = null;
     //Use IIFE to get human data from form
 
     const button = document.getElementById("btn");
    
-    button.addEventListener("click", function(human){
-    // Use IIFE to get and return human data from form
-        human =  function (){
-        let name = document.getElementById("name").value;
-        let feet = document.getElementById("feet").value;
-        let inches = document.getElementById("inches").value;
-        let height = feet*12+inches;
-        let weight = document.getElementById("weight").value;
-        let diet = document.getElementById("diet").value;
-        return new Dino (human.name, human.height, human.weight, human.diet);
-        }
-    });
+    button.addEventListener("click", function() { 
+        human=gethumandata(); 
+    }());
+    
     
    
 
     // Create Dino Compare Method 1
    
 
-    Dino.compareHeight = function (fact) {
-        dino_fact_arr = [];
-        //original fact
-        const original_fact = fact;
-        //wow_fact
-        const wow_fact = "Wow! This is one of the random fact!!!";
-      
-        if (dino.species === "Pigeon") {
-          dino.fact = "All birds are living dinosaurs.";
-        } else {
-          if (dino.height > human.height) {
-            //comparison fact
-            const comparison_fact = `${dino.species} is ${
-              dino.height - human.height
-            } inches
-          taller than ${human.species}`;
-      
-            //push three random fact in to dino_fact_arr
-            dino_fact_arr.push(original_fact, comparison_fact, wow_fact);
-      
-            dino.fact = dino_fact_arr[Math.floor(Math.random() * 3)];
-            return dino.fact;
-          } else {
-            //comparison fact
-            const comparison_fact = `${dino.species} is ${
-              human.height - dino.height
-            } inches  smaller than ${human.species}`;
-      
-            //push three random fact in to dino_fact_arr
-            dino_fact_arr.push(original_fact, comparison_fact, wow_fact);
-            dino.fact = dino_fact_arr[Math.floor(Math.random() * 3)];
-            return dino.fact;
-          }
+    Dino.getHeightDif = () => {
+        if (human.height < dino.height) {
+            return `${human.name} is ${dino.height - human.height} inches shorter than ${dino.species}!`;
         }
-      };
+    };
+  console.log(Dino.getHeightDif());
+      
+
 
 
 
@@ -182,10 +136,14 @@
         
     
     // Create Dino Compare Method 2
+    Dino.compareWeight = function () {};
     // NOTE: Weight in JSON file is in lbs, height in inches.
 
     
     // Create Dino Compare Method 3
+
+    Dino.compareDiet = function () {};
+
     // NOTE: Weight in JSON file is in lbs, height in inches.
 
 
