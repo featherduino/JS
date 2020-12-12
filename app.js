@@ -176,50 +176,41 @@ else
 
 
 
-    // NOTE: Weight in JSON file is in lbs, height in inches.
-
-
-    // Generate Tiles for each Dino in Array
-     addtiles = () => {
-
-         const human_data= gethumandata();
+    
+addTtiles = () => {
+    const human_data= gethumandata();
         
-        const dino_data = dino;
-        
-        const results =dino_data.slice(0,4).concat(human_data).concat(dino_data.slice(4,8));
-        
-        results.forEach((data) => {
-            const { species, image, fact, weight, height, diet } = data;
-            //Call the Dino compare method
-            const dinoCompareDiet = new Dino(
-                species, 
-                weight,diet, height,
-                 where, when, fact
-            )
-
-            const compareDiett = dinoCompareDiet.compareDiet();
-
-    }
-
-        // Add tiles to DOM
-       
+    const dino_data = dino;
+    
+    const results =dino_data.slice(0,4).concat(human_data).concat(dino_data.slice(4,8));
+    
+    results.forEach((data) => {
+        const { species, image, fact, weight, height, diet } = data;
+        //Call the Dino compare method
+        const dinoCompareDiet = new Dino(
+            species, 
+            weight,diet, height,
+             where, when, fact
+        )
+        const compareDiett = dinoCompareDiet.compareDiet();
+})
+ grid.innerHTML += `
+ <div class="grid-item">
+     <h3>${species}</h3>
+     <img src="${image ? image : ""}" alt="" />
+     <p>${fact ? compareDiet : ""} ${weight ? compareDinoWeight : ""}</p>
+     
+   </div>
+`;
 }
 
-
-     grid.innerHTML += `
-     <div class="grid-item">
-         <h3>${species}</h3>
-         <img src="${image ? image : ""}" alt="" />
-         <p>${fact ? compareDiet : ""} ${weight ? compareDinoWeight : ""}</p>
-         
-       </div>
-   `;
- });
-}
 
 /**
 * @description Remove form from the DOM
 */
+const dinoCompare = document.querySelector("#dino-compare");
+
+
 function removeForm() {
  dinoCompare.style.display = "none";
 }
@@ -231,7 +222,6 @@ btn.addEventListener("click", async (e) => {
  addTtiles();
  removeForm();
 });
-
 
 
 
