@@ -184,7 +184,7 @@ else
 
          const human_data= gethumandata();
         
-        const dino_data = dino();
+        const dino_data = dino;
         
         const results =dino_data.slice(0,4).concat(human_data).concat(dino_data.slice(4,8));
         
