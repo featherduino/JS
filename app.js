@@ -92,7 +92,7 @@
     
     // Dino Object from Json Object
 
-        const dino = data.map(() => 
+        const dino = data.map((data) => 
         new Dino(data.species, 
             data.weight, data.diet, data.height,
              data.where,data.when, data.fact)
@@ -129,7 +129,7 @@
 
     Dino.prototype.getHeightDif = function() {
         if (human.height < dino.height) {
-            return `${human.name} is ${dino.height - human.height} inches shorter than ${dino.species}!`;
+            return `${human.name} is ${dino.height - human.height} inches shorter than ${data.species}!`;
         }
          else(human.height > dino.height)
          {
