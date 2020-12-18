@@ -185,24 +185,39 @@ const addTtiles = () => {
     const results =dino_data.slice(0,4).concat(human_data).concat(dino_data.slice(4,8));
     
     results.forEach((data) => {
-        const { species,weight,diet,height,where,when,fact } = data;
+        const { species,weight,diet,height,where,when,fact,image } = data;
         //Call the Dino compare method
         const dinoCompareDiet = new Dino(
+            species, 
+            weight,diet, height,
+             where, when, fact,image
+        )
+
+        const dinoCompareWeight = new Dino(
+            species, 
+            weight,diet, height,
+             where, when, fact
+        )
+
+        const dinoCompareHeight = new Dino(
             species, 
             weight,diet, height,
              where, when, fact
         )
         const compareDiet = dinoCompareDiet.compareDiet();
-})
+        const compareWeight = dinoCompareWeight.compareWeight();
+        const compareHeight = dinoCompareHeight.compareHeight();
+
  grid.innerHTML += `
  <div class="grid-item">
      <h3>${dino.species}</h3>
      <img src="${image ? image : ""}" alt="" />
-     <p>${fact ? compareDiet : ""} ${weight ? compareDinoWeight : ""}</p>
+
+     <p>${fact ? compareDiet : ""} ${weight ? compareWeight : ""} ${height ? compareHeight : ""}</p>
      
    </div>
 `;
-}
+})
 
 
 
