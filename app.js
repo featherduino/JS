@@ -122,10 +122,7 @@
 
     const button = document.getElementById("btn");
    
-    button.addEventListener("click", function() { 
-       
-        human=gethumandata(); 
-     });
+
     
  // Create Dino Compare Method 1
    
@@ -134,7 +131,7 @@
         if (human.height < dino.height) {
             return `${human.name} is ${dino.height - human.height} inches shorter than ${dino.species}!`;
         }
-         elseif(human.height > dino.height)
+         else(human.height > dino.height)
          {
             return `${human.name} is ${dino.height - human.height} inches taller than ${dino.species}!`;
 
@@ -150,7 +147,7 @@
         if(human.weight < dino.weight){
             return `${human.name} is ${dino.height - human.weight} kilos shorter than ${dino.species}!`;
         }  
-        else if(human.height > dino.height) 
+        else(human.height > dino.height) 
         {
             return `${human.name} is ${dino.weight - human.weight} kilos taller than ${dino.species}!`;
         }
@@ -187,28 +184,10 @@ const addTtiles = () => {
     const results =dino_data.slice(0,4).concat(human_data).concat(dino_data.slice(4,8));
     
     results.forEach((data) => {
-        const { species,weight,diet,height,where,when,fact,image } = data;
-        //Call the Dino compare method
-        const dinoCompareDiet = new Dino(
-            species, 
-            weight,diet, height,
-             where, when, fact
-        )
-
-        const dinoCompareWeight = new Dino(
-            species, 
-            weight,diet, height,
-             where, when, fact
-        )
-
-        const dinoCompareHeight = new Dino(
-            species, 
-            weight,diet, height,
-             where, when, fact
-        )
-        const compareDiet = dinoCompareDiet.comparediet();
-        const compareWeight = dinoCompareWeight.compareWeight();
-        const compareHeight = dinoCompareHeight.getHeightDif();
+         const { species,weight,diet,height,where,when,fact,image } = data;
+        const compareDiet = data.compareDiet();
+        const compareWeight = data.compareWeight();
+        const compareHeight = data.getHeightDif();
 
  grid.innerHTML += `
  <div class="grid-item">
@@ -239,13 +218,12 @@ function removeForm() {
 /*
 * @description On button click, prepare and display infographic
 */
-button.addEventListener("click", async (e) => {
- addTtiles();
- removeForm();
-});
-
-
-
+button.addEventListener("click", function() { 
+       
+    human=gethumandata(); 
+    addTtiles();
+    removeForm();
+ });
 
     // Remove form from screen
 
