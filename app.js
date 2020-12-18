@@ -24,7 +24,6 @@
                 "where": "North America",
                 "when": "Late Cretaceous",
                 "fact": "First discovered in 1889 by Othniel Charles Marsh",
-                "image": "tyrannosaurus rex.png"
             },
             {
                 "species": "Tyrannosaurus Rex",
@@ -93,12 +92,11 @@
     
     // Dino Object from Json Object
 
-        const dino = data.map((data) => 
+        const dino = data.map(() => 
         new Dino(data.species, 
             data.weight, data.diet, data.height,
-             data.where, data.when, data.fact)
+             data.where,data.when, data.fact)
              );
-
 
 
 //Get Human data to append name,feet,weight,diet and height from form.
@@ -107,16 +105,18 @@
     const feet = parseInt(document.getElementById("feet").value);
     const inches = parseInt(document.getElementById("inches").value);
     const height = feet*12+inches;
-    const weight = document.getElementById("weight").value;
+    const weight = Number.parseFloat(document.getElementById("weight").value);
     const diet = document.getElementById("diet").value;
     
-    return new Dino (name,weight,diet,height);
+    let humandino= new Dino("human",weight,diet,height);
+    humandino.name = name;
+    return humandino
         
 };
 
    // Create Human Object
 
-    let human = null;
+    let human = new Array(gethumandata());
     
     //Use IIFE to get human data from form
 
@@ -127,7 +127,7 @@
  // Create Dino Compare Method 1
    
 
-    Dino.prototype.getHeightDif = () => {
+    Dino.prototype.getHeightDif = function() {
         if (human.height < dino.height) {
             return `${human.name} is ${dino.height - human.height} inches shorter than ${dino.species}!`;
         }
@@ -143,13 +143,13 @@
         
     
     // Create Dino Compare Method 2
-    Dino.prototype.compareWeight = () => {
+    Dino.prototype.compareWeight = function(){
         if(human.weight < dino.weight){
-            return `${human.name} is ${dino.height - human.weight} kilos shorter than ${dino.species}!`;
+            return `${human.name} is ${dino.height - human.weight} kilos heavier than ${dino.species}!`;
         }  
-        else(human.height > dino.height) 
+        else(human.weight > dino.weight) 
         {
-            return `${human.name} is ${dino.weight - human.weight} kilos taller than ${dino.species}!`;
+            return `${human.name} is ${dino.weight - human.weight} kilos heavier than ${dino.species}!`;
         }
 
     };
@@ -158,7 +158,7 @@
     
     // Create Dino Compare Method 3
     
-    Dino.prototype.compareDiet = () => {
+    Dino.prototype.compareDiet = function() {
     if(human.diet !== dino.diet){
     return `${dino.species} is ${dino.diet} while human is ${human.diet}`;
 } 
@@ -176,7 +176,7 @@ else
 
     // Generate Tiles for each Dino in Array
     
-const addTtiles = () => {
+const addTtiles = function(){
     const human_data= gethumandata();
     const grid = document.getElementById('grid')
     const dino_data = dino;
@@ -191,7 +191,7 @@ const addTtiles = () => {
 
  grid.innerHTML += `
  <div class="grid-item">
-     <h3>${dino.species}</h3>
+     <h3>${species}</h3>
      <img src="${image ? image : ""}" alt="" />
 
      <p>${fact ? compareDiet : ""} ${weight ? compareWeight : ""} ${height ? compareHeight : ""}</p>
@@ -201,9 +201,6 @@ const addTtiles = () => {
 })
 
 }
-
-
-
 
 /**
 * @description Remove form from the DOM
