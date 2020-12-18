@@ -1,6 +1,6 @@
 
     // Create Dino Constructor
-    Dino = function (species,weight,diet,height,where,when,fact) {
+    Dino = function (species,weight,diet,height,where,when,fact,image) {
         this.species=species;
         this.weight=weight;
         this.diet=diet;
@@ -8,6 +8,7 @@
         this.where=where;
         this.when=when;
         this.fact=fact;
+        this.image=image;
         
     }
 
@@ -22,7 +23,8 @@
                 "diet": "herbavor",
                 "where": "North America",
                 "when": "Late Cretaceous",
-                "fact": "First discovered in 1889 by Othniel Charles Marsh"
+                "fact": "First discovered in 1889 by Othniel Charles Marsh",
+                "image": "tyrannosaurus rex.png"
             },
             {
                 "species": "Tyrannosaurus Rex",
@@ -148,7 +150,7 @@
         if(human.weight < dino.weight){
             return `${human.name} is ${dino.height - human.weight} kilos shorter than ${dino.species}!`;
         }  
-        elseif(human.height > dino.height) 
+        else if(human.height > dino.height) 
         {
             return `${human.name} is ${dino.weight - human.weight} kilos taller than ${dino.species}!`;
         }
@@ -190,7 +192,7 @@ const addTtiles = () => {
         const dinoCompareDiet = new Dino(
             species, 
             weight,diet, height,
-             where, when, fact,image
+             where, when, fact
         )
 
         const dinoCompareWeight = new Dino(
@@ -204,9 +206,9 @@ const addTtiles = () => {
             weight,diet, height,
              where, when, fact
         )
-        const compareDiet = dinoCompareDiet.compareDiet();
+        const compareDiet = dinoCompareDiet.comparediet();
         const compareWeight = dinoCompareWeight.compareWeight();
-        const compareHeight = dinoCompareHeight.compareHeight();
+        const compareHeight = dinoCompareHeight.getHeightDif();
 
  grid.innerHTML += `
  <div class="grid-item">
@@ -218,6 +220,8 @@ const addTtiles = () => {
    </div>
 `;
 })
+
+}
 
 
 
@@ -235,7 +239,7 @@ function removeForm() {
 /*
 * @description On button click, prepare and display infographic
 */
-btn.addEventListener("click", async (e) => {
+button.addEventListener("click", async (e) => {
  addTtiles();
  removeForm();
 });
