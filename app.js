@@ -128,12 +128,12 @@
    
 
     Dino.prototype.getHeightDif = function() {
-        if (human.height < dino.height) {
-            return `${human.name} is ${dino.height - human.height} inches shorter than ${data.species}!`;
+        if (human.height < this.height) {
+            return `${human.name} is ${this.height - human.height} inches shorter than ${this.species}!`;
         }
-         else(human.height > dino.height)
+         else(human.height > this.height)
          {
-            return `${human.name} is ${dino.height - human.height} inches taller than ${dino.species}!`;
+            return `${human.name} is ${this.height - human.height} inches taller than ${this.species}!`;
 
         }
 
@@ -144,12 +144,12 @@
     
     // Create Dino Compare Method 2
     Dino.prototype.compareWeight = function(){
-        if(human.weight < dino.weight){
-            return `${human.name} is ${dino.height - human.weight} kilos heavier than ${dino.species}!`;
+        if(human.weight < this.weight){
+            return `${human.name} is ${this.height - human.weight} kilos heavier than ${this.species}!`;
         }  
         else(human.weight > dino.weight) 
         {
-            return `${human.name} is ${dino.weight - human.weight} kilos heavier than ${dino.species}!`;
+            return `${human.name} is ${this.weight - human.weight} kilos heavier than ${this.species}!`;
         }
 
     };
@@ -159,12 +159,12 @@
     // Create Dino Compare Method 3
     
     Dino.prototype.compareDiet = function() {
-    if(human.diet !== dino.diet){
-    return `${dino.species} is ${dino.diet} while human is ${human.diet}`;
+    if(human.diet !== this.diet){
+    return `${this.species} is ${this.diet} while human is ${human.diet}`;
 } 
 else
  {
-  return `Both ${dino.species} and human are ${human.diet}.`;
+  return `Both ${this.species} and human are ${human.diet}.`;
 }
 };
 
