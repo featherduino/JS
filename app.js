@@ -8,7 +8,7 @@
         this.where=where;
         this.when=when;
         this.fact=fact;
-        this.image=image;
+        this.image="images/" + species.toLowerCase() + '.png';
         
     }
 
@@ -109,14 +109,16 @@
     const diet = document.getElementById("diet").value;
     
     let humandino= new Dino("human",weight,diet,height);
+
     humandino.name = name;
+    
     return humandino
         
 };
 
    // Create Human Object
 
-    let human = new Array(gethumandata());
+    let human = gethumandata();
     
     //Use IIFE to get human data from form
 
@@ -153,6 +155,12 @@
         }
 
     };
+
+
+    // random fact
+
+
+
     // NOTE: Weight in JSON file is in lbs, height in inches.
 
     
@@ -189,11 +197,12 @@ const addTtiles = function(){
         const compareWeight = data.compareWeight();
         const compareHeight = data.getHeightDif();
 
+
  grid.innerHTML += `
  <div class="grid-item">
      <h3>${species}</h3>
-     <img src="${image ? image : ""}" alt="" />
-
+     <img src="{'/images/'${image}+  '.png'}" alt="${species} image" />
+     ${image}
      <p>${fact ? compareDiet : ""} ${weight ? compareWeight : ""} ${height ? compareHeight : ""}</p>
      
    </div>
@@ -206,6 +215,7 @@ const addTtiles = function(){
 * @description Remove form from the DOM
 */
 const dinoCompare = document.querySelector("#dino-compare");
+
 
 
 function removeForm() {
